@@ -1,5 +1,7 @@
 import flet as ft
 
+from database.DAO import DAO
+
 
 class View(ft.UserControl):
     def __init__(self, page: ft.Page):
@@ -32,11 +34,11 @@ class View(ft.UserControl):
         self._page.controls.append(self._title)
 
         # First row with some controls
-        self.txt_latitude = ft.TextField(label="Latitude", hint_text="inserire una latitudine")
-        self.txt_longitude = ft.TextField(label="Longitude", hint_text="inserire una longitudine")
+        self.txt_latitude = ft.TextField(label="Latitude", hint_text=f"inserire una latitudine in range {DAO.getter_estremi_lat()}")
+        self.txt_longitude = ft.TextField(label="Longitude", hint_text=f"inserire una longitudine in range {DAO.getter_estremi_long()}")
         self.ddshape = ft.Dropdown(label="Shape",
                                    hint_text="Forma da analizzare per gli avvistamenti.")
-        self._controller.fill_ddshape()
+        self._controller.fill_dropdown()
 
         row1 = ft.Row([self.txt_latitude, self.txt_longitude, self.ddshape],
                       alignment=ft.MainAxisAlignment.SPACE_EVENLY)
