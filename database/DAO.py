@@ -125,10 +125,11 @@ class DAO():
         else:
             cursor = conn.cursor(dictionary=True)
             query = """select s.state, sum(s.duration) as 'pesoNodo'
-                        from sighting s 
-                        where s.latitude >%s
-                        and s.longitude > %s
+                        from sighting s, state st 
+                        where st.lat > %s
+                        and st.lng > %s
                         and s.shape = %s
+                        and s.state = st.id
                         group by s.state 
                         """
             cursor.execute(query, (minLat, minLong, shape))

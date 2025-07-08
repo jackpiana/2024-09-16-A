@@ -50,12 +50,16 @@ class Controller:
 
     def handle_path(self, e):
         self._view.txt_result2.controls.clear()
+        self._view.show_loading_bar()
         self._model.calcola_bestpath()
         bestPath = self._model.bestPath
         bestScore = self._model.bestScore
         self._view.txt_result2.controls.append(ft.Text(f"punteggio ottimo: {bestScore}\nmiglior path: \n"))
         for e in bestPath:
-            self._view.txt_result2.controls.append(ft.Text(f"{e[0]}"))
+            self._view.txt_result2.controls.append(ft.Text(f"{e[0]} - densità: {e[0].densita_popolazione()}"))
+
+        self._view.remove_loading_bar()
+
         self._view.update_page()
 
 

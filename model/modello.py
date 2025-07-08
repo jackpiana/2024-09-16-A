@@ -92,7 +92,7 @@ class Model:
         score = pesoTot / distanceTot
         print(score)
         if score > self.bestScore:
-            self.bestScore = score
+            self.bestScore = int(score)
             self.bestPath = parziale
         return score
 

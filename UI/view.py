@@ -112,3 +112,20 @@ class View(ft.UserControl):
 
     def update_page(self):
         self._page.update()
+
+    def show_loading_bar(self):
+        # progress bar
+        progress_loading = ft.ProgressBar(width=400,
+                                          height=20,
+                                          color="blue",
+                                          bgcolor="#eeeeee")
+
+        self.row_loadingBar = ft.Row([progress_loading],
+                      alignment=ft.MainAxisAlignment.CENTER)
+
+        self._page.controls.append(self.row_loadingBar)
+        self._page.update()
+
+    def remove_loading_bar(self):
+        self._page.controls.remove(self.row_loadingBar)
+        self._page.update()
